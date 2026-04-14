@@ -40,8 +40,8 @@ export function DonationModal({ isOpen, onClose, sevaType }: DonationModalProps)
         setIsProcessing(false);
         onClose();
         navigate({
-          to: "/thank-you",
-          search: { paymentId, amount: String(finalAmount), seva: sevaType },
+          to: "/thank-you" as any,
+          search: { paymentId, amount: String(finalAmount), seva: sevaType } as any,
         });
       },
       onFailure: () => {
@@ -61,7 +61,6 @@ export function DonationModal({ isOpen, onClose, sevaType }: DonationModalProps)
           <p className="text-primary-foreground/80 text-sm mt-1">Akshaya Tritiya Donation</p>
         </div>
         <div className="p-6 space-y-5">
-          {/* Amount selection */}
           <div>
             <label className="text-sm font-semibold text-foreground mb-2 block">Select Amount (₹)</label>
             <div className="grid grid-cols-3 gap-2">
@@ -88,7 +87,6 @@ export function DonationModal({ isOpen, onClose, sevaType }: DonationModalProps)
             />
           </div>
 
-          {/* Donor details */}
           <div className="space-y-3">
             <input
               type="text"
