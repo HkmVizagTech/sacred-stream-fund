@@ -1,57 +1,19 @@
-import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { Header } from "@/components/Header";
-import { HeroSection } from "@/components/HeroSection";
-import { QuoteSection } from "@/components/QuoteSection";
-import { VideoSection } from "@/components/VideoSection";
-import { DonationCards } from "@/components/DonationCards";
-import { DonorPrivileges } from "@/components/DonorPrivileges";
-import { SignificanceSection } from "@/components/SignificanceSection";
-import { ContributorsSection } from "@/components/ContributorsSection";
-import { TempleSection } from "@/components/TempleSection";
-import { Footer } from "@/components/Footer";
-import { StickyDonateBar } from "@/components/StickyDonateBar";
-import { DonationModal } from "@/components/DonationModal";
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Akshaya Tritiya 2026 Donation – Offer Seva and Daan | Gupt Vrindavan Dham" },
-      { name: "description", content: "Donate on Akshaya Tritiya 2026 for Gau Seva, Annadaan Seva & Mandir Nirman at Gupt Vrindavan Dham. Earn imperishable Akshaya Punya." },
-      { property: "og:title", content: "Akshaya Tritiya 2026 Donation – Gupt Vrindavan Dham" },
-      { property: "og:description", content: "Donate for Gau Seva, Annadaan & Temple Construction. Earn Akshaya Punya." },
-    ],
-  }),
   component: Index,
 });
 
-function Index() {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [selectedSeva, setSelectedSeva] = useState("Akshaya Tritiya Seva");
-
-  const openDonation = (seva?: string) => {
-    setSelectedSeva(seva || "Akshaya Tritiya Seva");
-    setModalOpen(true);
-  };
-
+// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
+// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
+function PlaceholderIndex() {
   return (
-    <div className="min-h-screen">
-      <Header onDonate={() => openDonation()} />
-      <HeroSection />
-      <QuoteSection />
-      <VideoSection />
-      <DonationCards onDonate={(seva) => openDonation(seva)} />
-      <DonorPrivileges onDonate={() => openDonation()} />
-      <SignificanceSection />
-      <ContributorsSection />
-      <TempleSection onDonate={() => openDonation("Mandir Nirman Seva")} />
-      <Footer />
-      <StickyDonateBar onDonate={() => openDonation()} />
-      <DonationModal
-        isOpen={modalOpen}
-        onClose={() => setModalOpen(false)}
-        sevaType={selectedSeva}
-      />
+    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
+      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
     </div>
   );
+}
+
+function Index() {
+  return <PlaceholderIndex />;
 }

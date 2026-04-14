@@ -26,8 +26,6 @@ function NotFoundComponent() {
   );
 }
 
-const fontUrl = "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Nunito+Sans:wght@300;400;600;700;800&display=swap";
-
 export const Route = createRootRoute({
   head: () => ({
     meta: [
@@ -43,10 +41,10 @@ export const Route = createRootRoute({
       { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com" },
-      { rel: "stylesheet", href: fontUrl },
-      { rel: "stylesheet", href: appCss },
+      {
+        rel: "stylesheet",
+        href: appCss,
+      },
     ],
   }),
   shellComponent: RootShell,
