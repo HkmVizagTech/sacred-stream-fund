@@ -5,12 +5,12 @@ import chandanSeva from "@/assets/chandan-seva.jpg";
 import annaSeva from "@/assets/anna-seva.jpg";
 
 const categories = [
-  { name: "Akshaya Tritiya Seva", image: akshayaSeva },
-  { name: "Gau Seva", image: gauSeva },
-  { name: "Mandir Nirman Seva", image: mandirNirman },
-  { name: "Chandan Alankar Seva", image: chandanSeva },
-  { name: "Khichdi Vitaran Seva", image: annaSeva },
-  { name: "Annadana Seva", image: annaSeva },
+  { name: "Akshaya Tritiya Seva", image: akshayaSeva, desc: "Earn imperishable Akshaya Punya" },
+  { name: "Gau Seva", image: gauSeva, desc: "Protect 16,000+ abandoned Gau Mata" },
+  { name: "Mandir Nirman Seva", image: mandirNirman, desc: "Build Rajasthan's largest temple" },
+  { name: "Chandan Alankar Seva", image: chandanSeva, desc: "Adorn the deity with sandalwood" },
+  { name: "Khichdi Vitaran Seva", image: annaSeva, desc: "Distribute food to the needy" },
+  { name: "Annadana Seva", image: annaSeva, desc: "Feed devotees and the underprivileged" },
 ];
 
 interface DonationCardsProps {
@@ -19,34 +19,39 @@ interface DonationCardsProps {
 
 export function DonationCards({ onDonate }: DonationCardsProps) {
   return (
-    <section id="donate" className="py-16 px-4 bg-background">
+    <section id="seva" className="py-20 px-4 bg-cream">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-2xl md:text-3xl font-bold text-primary mb-8 uppercase tracking-wide">
-          Akshaya Tritiya Daan
-        </h2>
+        <div className="text-center mb-12">
+          <span className="text-sm font-bold uppercase tracking-[0.2em] text-saffron">Choose Your Seva</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-temple-brown mt-3">
+            Akshaya Tritiya Daan
+          </h2>
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {categories.map((cat) => (
             <div
               key={cat.name}
-              className="rounded-xl overflow-hidden shadow-md bg-primary group relative"
+              className="group bg-card rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-border"
             >
-              <div className="relative h-40 overflow-hidden">
+              <div className="relative h-48 overflow-hidden">
                 <img
                   src={cat.image}
                   alt={cat.name}
                   loading="lazy"
                   width={640}
                   height={512}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-temple-dark/60 to-transparent" />
               </div>
-              <div className="p-4 flex items-center justify-between">
-                <h3 className="text-primary-foreground font-bold text-lg">{cat.name}</h3>
+              <div className="p-5">
+                <h3 className="text-temple-brown font-bold text-lg">{cat.name}</h3>
+                <p className="text-muted-foreground text-sm mt-1">{cat.desc}</p>
                 <button
                   onClick={() => onDonate(cat.name)}
-                  className="bg-background text-primary px-5 py-2 rounded-lg font-semibold text-sm hover:bg-accent transition-colors"
+                  className="mt-4 w-full bg-saffron text-temple-dark py-2.5 rounded-full font-bold text-sm hover:bg-saffron-light transition-colors"
                 >
-                  Donate
+                  Donate for {cat.name.split(" ")[0]} →
                 </button>
               </div>
             </div>

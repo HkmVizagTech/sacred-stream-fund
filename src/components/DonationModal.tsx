@@ -51,27 +51,34 @@ export function DonationModal({ isOpen, onClose, sevaType }: DonationModalProps)
   };
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-foreground/50 p-4" onClick={onClose}>
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-temple-dark/60 backdrop-blur-sm p-4" onClick={onClose}>
       <div
-        className="bg-card rounded-2xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto"
+        className="bg-card rounded-3xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto border border-border"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="bg-primary p-6 rounded-t-2xl">
-          <h3 className="text-primary-foreground text-xl font-bold">{sevaType}</h3>
-          <p className="text-primary-foreground/80 text-sm mt-1">Akshaya Tritiya Donation</p>
+        <div className="bg-gradient-to-r from-temple-brown to-temple-dark p-6 rounded-t-3xl">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-full bg-saffron/20 flex items-center justify-center">
+              <span className="text-saffron text-xl">🙏</span>
+            </div>
+            <div>
+              <h3 className="text-cream text-lg font-bold">{sevaType}</h3>
+              <p className="text-cream/60 text-xs">Akshaya Tritiya Donation</p>
+            </div>
+          </div>
         </div>
         <div className="p-6 space-y-5">
           <div>
-            <label className="text-sm font-semibold text-foreground mb-2 block">Select Amount (₹)</label>
+            <label className="text-sm font-bold text-foreground mb-3 block">Select Amount (₹)</label>
             <div className="grid grid-cols-3 gap-2">
               {presetAmounts.map((a) => (
                 <button
                   key={a}
                   onClick={() => { setAmount(a); setCustomAmount(""); }}
-                  className={`py-2 rounded-lg font-semibold text-sm transition-colors ${
+                  className={`py-2.5 rounded-xl font-bold text-sm transition-all ${
                     amount === a && !customAmount
-                      ? "bg-donate-btn text-donate-btn-foreground"
-                      : "bg-muted text-foreground hover:bg-accent"
+                      ? "bg-saffron text-temple-dark shadow-md shadow-saffron/20"
+                      : "bg-muted text-foreground hover:bg-accent border border-border"
                   }`}
                 >
                   ₹{a.toLocaleString()}
@@ -83,7 +90,7 @@ export function DonationModal({ isOpen, onClose, sevaType }: DonationModalProps)
               placeholder="Or enter custom amount"
               value={customAmount}
               onChange={(e) => setCustomAmount(e.target.value)}
-              className="mt-3 w-full border border-border rounded-lg px-4 py-2 text-sm bg-background text-foreground focus:ring-2 focus:ring-ring outline-none"
+              className="mt-3 w-full border border-border rounded-xl px-4 py-3 text-sm bg-background text-foreground focus:ring-2 focus:ring-saffron/50 outline-none"
             />
           </div>
 
@@ -94,14 +101,14 @@ export function DonationModal({ isOpen, onClose, sevaType }: DonationModalProps)
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
-              className="w-full border border-border rounded-lg px-4 py-2 text-sm bg-background text-foreground focus:ring-2 focus:ring-ring outline-none"
+              className="w-full border border-border rounded-xl px-4 py-3 text-sm bg-background text-foreground focus:ring-2 focus:ring-saffron/50 outline-none"
             />
             <input
               type="email"
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full border border-border rounded-lg px-4 py-2 text-sm bg-background text-foreground focus:ring-2 focus:ring-ring outline-none"
+              className="w-full border border-border rounded-xl px-4 py-3 text-sm bg-background text-foreground focus:ring-2 focus:ring-saffron/50 outline-none"
             />
             <input
               type="tel"
@@ -109,14 +116,14 @@ export function DonationModal({ isOpen, onClose, sevaType }: DonationModalProps)
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               required
-              className="w-full border border-border rounded-lg px-4 py-2 text-sm bg-background text-foreground focus:ring-2 focus:ring-ring outline-none"
+              className="w-full border border-border rounded-xl px-4 py-3 text-sm bg-background text-foreground focus:ring-2 focus:ring-saffron/50 outline-none"
             />
           </div>
 
           <button
             onClick={handleDonate}
             disabled={isProcessing || !name || !phone || !finalAmount}
-            className="w-full bg-donate-btn text-donate-btn-foreground py-3 rounded-lg font-bold text-lg hover:opacity-90 transition-opacity disabled:opacity-50"
+            className="w-full bg-saffron text-temple-dark py-3.5 rounded-full font-bold text-lg hover:bg-saffron-light transition-colors disabled:opacity-50 shadow-lg shadow-saffron/20"
           >
             {isProcessing ? "Processing..." : `Donate ₹${(finalAmount || 0).toLocaleString()}`}
           </button>

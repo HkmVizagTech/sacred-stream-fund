@@ -23,39 +23,39 @@ export function ContributorsSection() {
     : recentContributors;
 
   return (
-    <section className="py-16 px-4 bg-hero-bg">
+    <section className="py-20 px-4 bg-parchment">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-2xl md:text-3xl font-bold text-primary mb-8 text-center">
-          Respected Contributors
-        </h2>
-        <div className="flex justify-center gap-2 mb-8">
-          <button
-            onClick={() => setTab("recent")}
-            className={`px-6 py-2 rounded-full font-semibold transition-colors ${
-              tab === "recent" ? "bg-donate-btn text-donate-btn-foreground" : "bg-background text-foreground border border-border"
-            }`}
-          >
-            Recent
-          </button>
-          <button
-            onClick={() => setTab("generous")}
-            className={`px-6 py-2 rounded-full font-semibold transition-colors ${
-              tab === "generous" ? "bg-donate-btn text-donate-btn-foreground" : "bg-background text-foreground border border-border"
-            }`}
-          >
-            Most Generous
-          </button>
+        <div className="text-center mb-10">
+          <span className="text-sm font-bold uppercase tracking-[0.2em] text-saffron">Community</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-temple-brown mt-3">
+            Respected Contributors
+          </h2>
+        </div>
+        <div className="flex justify-center gap-3 mb-10">
+          {(["recent", "generous"] as const).map((t) => (
+            <button
+              key={t}
+              onClick={() => setTab(t)}
+              className={`px-6 py-2.5 rounded-full font-semibold text-sm transition-all ${
+                tab === t
+                  ? "bg-saffron text-temple-dark shadow-md shadow-saffron/20"
+                  : "bg-card text-foreground border border-border hover:border-saffron/50"
+              }`}
+            >
+              {t === "recent" ? "Recent" : "Most Generous"}
+            </button>
+          ))}
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {sorted.map((c, i) => (
-            <div key={i} className="bg-contributor-bg rounded-xl p-4 flex items-center gap-3 shadow-sm">
-              <div className="w-10 h-10 rounded-full bg-contributor-avatar flex items-center justify-center text-primary font-bold text-lg shrink-0">
+            <div key={i} className="bg-card rounded-2xl p-4 flex items-center gap-4 border border-border/50 hover:border-saffron/30 transition-colors">
+              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-saffron to-amber-warm flex items-center justify-center text-temple-dark font-bold text-lg shrink-0 shadow-sm">
                 {c.name.charAt(0)}
               </div>
               <div className="min-w-0">
-                <p className="text-primary font-semibold text-sm truncate">{c.name}</p>
-                <p className="text-foreground font-bold text-sm">Donated ₹ {c.amount}</p>
-                <p className="text-muted-foreground text-xs">in about {c.time}</p>
+                <p className="text-temple-brown font-semibold text-sm truncate">{c.name}</p>
+                <p className="text-saffron font-bold text-base">₹{c.amount.toLocaleString()}</p>
+                <p className="text-muted-foreground text-xs">{c.time}</p>
               </div>
             </div>
           ))}

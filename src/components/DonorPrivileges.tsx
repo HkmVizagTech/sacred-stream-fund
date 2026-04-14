@@ -1,12 +1,12 @@
 import spiritualBooks from "@/assets/spiritual-books.jpg";
 
 const privileges = [
-  "On Donation of ₹ 1100 or above, you will receive Maha Prasadam from Gupt Vrindavan Dham.",
-  "Receive Narasimha Kavach Sutra at your home.",
-  "Receive a special gift of Spiritual Books.",
-  "Digital Certificate of Your Contribution.",
-  "Sankalp and Aarti will be performed in your name.",
-  "Get Narasimha Yagna Tilak",
+  { icon: "🙏", text: "On Donation of ₹ 1100 or above, receive Maha Prasadam from Gupt Vrindavan Dham." },
+  { icon: "📿", text: "Receive Narasimha Kavach Sutra at your home." },
+  { icon: "📖", text: "Receive a special gift of Spiritual Books." },
+  { icon: "📜", text: "Digital Certificate of Your Contribution." },
+  { icon: "🪔", text: "Sankalp and Aarti will be performed in your name." },
+  { icon: "🔱", text: "Get Narasimha Yagna Tilak." },
 ];
 
 interface DonorPrivilegesProps {
@@ -15,43 +15,43 @@ interface DonorPrivilegesProps {
 
 export function DonorPrivileges({ onDonate }: DonorPrivilegesProps) {
   return (
-    <section className="py-16 px-4 bg-section-pink">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-10">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <span className="h-px w-20 bg-primary/30" />
-            <span className="text-primary text-2xl">✦</span>
-            <span className="h-px w-20 bg-primary/30" />
-          </div>
-        </div>
-        <div className="grid md:grid-cols-2 gap-10 items-center">
-          <div className="rounded-xl overflow-hidden shadow-lg">
-            <img
-              src={spiritualBooks}
-              alt="Spiritual Books"
-              loading="lazy"
-              width={640}
-              height={512}
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div>
-            <h2 className="text-2xl md:text-3xl font-bold text-primary mb-6">
+    <section id="privileges" className="py-20 px-4 bg-parchment relative overflow-hidden">
+      <div className="absolute top-0 left-0 w-64 h-64 bg-saffron/5 rounded-full -translate-x-1/2 -translate-y-1/2" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-lotus-pink/10 rounded-full translate-x-1/3 translate-y-1/3" />
+      <div className="max-w-6xl mx-auto relative z-10">
+        <div className="grid md:grid-cols-2 gap-14 items-center">
+          <div className="order-2 md:order-1">
+            <span className="text-sm font-bold uppercase tracking-[0.2em] text-saffron">Benefits</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-temple-brown mt-3 mb-8">
               Festival Donor Privileges
             </h2>
-            <ol className="space-y-4">
+            <div className="space-y-4">
               {privileges.map((p, i) => (
-                <li key={i} className="text-foreground/80 leading-relaxed">
-                  <span className="font-semibold text-foreground">{i + 1}.</span> {p}
-                </li>
+                <div key={i} className="flex items-start gap-4 bg-card/80 backdrop-blur-sm rounded-xl p-4 border border-border/50">
+                  <span className="text-2xl shrink-0">{p.icon}</span>
+                  <p className="text-foreground/80 leading-relaxed text-sm">{p.text}</p>
+                </div>
               ))}
-            </ol>
+            </div>
             <button
               onClick={onDonate}
-              className="mt-8 bg-donate-btn text-donate-btn-foreground px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity"
+              className="mt-8 bg-saffron text-temple-dark px-10 py-4 rounded-full font-bold text-lg hover:bg-saffron-light transition-colors shadow-lg shadow-saffron/20"
             >
-              Donate Now
+              Donate Now →
             </button>
+          </div>
+          <div className="order-1 md:order-2">
+            <div className="relative">
+              <div className="absolute -inset-4 bg-gradient-to-br from-saffron/20 to-amber-warm/20 rounded-3xl" />
+              <img
+                src={spiritualBooks}
+                alt="Spiritual Books & Prasadam"
+                loading="lazy"
+                width={640}
+                height={512}
+                className="relative rounded-2xl w-full h-auto object-cover shadow-xl"
+              />
+            </div>
           </div>
         </div>
       </div>
