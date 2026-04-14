@@ -28,7 +28,7 @@ export function Header({ onDonate }: HeaderProps) {
         </div>
         <button
           onClick={onDonate}
-          className="gold-shine-button shrink-0 px-4 py-2 text-sm font-bold md:px-6 md:py-2.5"
+          className="gold-shine-button shrink-0 px-5 py-2.5 text-sm font-bold md:px-7 md:py-3 md:text-base"
         >
           Donate
         </button>
