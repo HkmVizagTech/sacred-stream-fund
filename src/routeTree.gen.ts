@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as TermsAndConditionsRouteImport } from './routes/terms-and-conditions'
+import { Route as ShippingDeliveryPolicyRouteImport } from './routes/shipping-delivery-policy'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as ContactUsRouteImport } from './routes/contact-us'
@@ -25,6 +26,11 @@ const ThankYouRoute = ThankYouRouteImport.update({
 const TermsAndConditionsRoute = TermsAndConditionsRouteImport.update({
   id: '/terms-and-conditions',
   path: '/terms-and-conditions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShippingDeliveryPolicyRoute = ShippingDeliveryPolicyRouteImport.update({
+  id: '/shipping-delivery-policy',
+  path: '/shipping-delivery-policy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
@@ -60,6 +66,7 @@ export interface FileRoutesByFullPath {
   '/contact-us': typeof ContactUsRoute
   '/pricing': typeof PricingRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/shipping-delivery-policy': typeof ShippingDeliveryPolicyRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/thank-you': typeof ThankYouRoute
 }
@@ -69,6 +76,7 @@ export interface FileRoutesByTo {
   '/contact-us': typeof ContactUsRoute
   '/pricing': typeof PricingRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/shipping-delivery-policy': typeof ShippingDeliveryPolicyRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/thank-you': typeof ThankYouRoute
 }
@@ -79,6 +87,7 @@ export interface FileRoutesById {
   '/contact-us': typeof ContactUsRoute
   '/pricing': typeof PricingRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/shipping-delivery-policy': typeof ShippingDeliveryPolicyRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/thank-you': typeof ThankYouRoute
 }
@@ -90,6 +99,7 @@ export interface FileRouteTypes {
     | '/contact-us'
     | '/pricing'
     | '/privacy-policy'
+    | '/shipping-delivery-policy'
     | '/terms-and-conditions'
     | '/thank-you'
   fileRoutesByTo: FileRoutesByTo
@@ -99,6 +109,7 @@ export interface FileRouteTypes {
     | '/contact-us'
     | '/pricing'
     | '/privacy-policy'
+    | '/shipping-delivery-policy'
     | '/terms-and-conditions'
     | '/thank-you'
   id:
@@ -108,6 +119,7 @@ export interface FileRouteTypes {
     | '/contact-us'
     | '/pricing'
     | '/privacy-policy'
+    | '/shipping-delivery-policy'
     | '/terms-and-conditions'
     | '/thank-you'
   fileRoutesById: FileRoutesById
@@ -118,6 +130,7 @@ export interface RootRouteChildren {
   ContactUsRoute: typeof ContactUsRoute
   PricingRoute: typeof PricingRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
+  ShippingDeliveryPolicyRoute: typeof ShippingDeliveryPolicyRoute
   TermsAndConditionsRoute: typeof TermsAndConditionsRoute
   ThankYouRoute: typeof ThankYouRoute
 }
@@ -136,6 +149,13 @@ declare module '@tanstack/react-router' {
       path: '/terms-and-conditions'
       fullPath: '/terms-and-conditions'
       preLoaderRoute: typeof TermsAndConditionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shipping-delivery-policy': {
+      id: '/shipping-delivery-policy'
+      path: '/shipping-delivery-policy'
+      fullPath: '/shipping-delivery-policy'
+      preLoaderRoute: typeof ShippingDeliveryPolicyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy-policy': {
@@ -182,6 +202,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactUsRoute: ContactUsRoute,
   PricingRoute: PricingRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
+  ShippingDeliveryPolicyRoute: ShippingDeliveryPolicyRoute,
   TermsAndConditionsRoute: TermsAndConditionsRoute,
   ThankYouRoute: ThankYouRoute,
 }

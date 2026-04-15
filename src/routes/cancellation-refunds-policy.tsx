@@ -25,6 +25,20 @@ function CancellationRefundsPolicyPage() {
             "Approved refunds, if any, will be processed through the original payment method subject to payment provider timelines.",
           ],
         },
+        {
+          heading: "Typical Cases Considered",
+          paragraphs: [
+            "The organization may review cases such as duplicate payment, multiple debits for the same intended donation, payment marked successful by the bank but not reflected correctly in the donation system, or other clear technical errors.",
+            "Refund requests may be declined where the donation has been correctly processed and no payment-system error is established.",
+          ],
+        },
+        {
+          heading: "Review Timeline",
+          paragraphs: [
+            "Donors should ideally report refund-related issues within 7 days of the transaction using the support details listed on the Contact Us page.",
+            "Resolution timelines may vary depending on payment gateway confirmation, bank processing timelines, and internal verification requirements.",
+          ],
+        },
       ]}
     />
   );

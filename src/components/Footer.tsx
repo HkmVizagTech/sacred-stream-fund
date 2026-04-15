@@ -6,6 +6,7 @@ const footerLinks = [
   { to: "/terms-and-conditions", label: "Terms & Conditions" },
   { to: "/privacy-policy", label: "Privacy Policy" },
   { to: "/cancellation-refunds-policy", label: "Cancellation/Refunds Policy" },
+  { to: "/shipping-delivery-policy", label: "Shipping & Delivery Policy" },
 ] as const;
 
 export function Footer() {
