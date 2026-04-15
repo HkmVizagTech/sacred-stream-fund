@@ -9,7 +9,7 @@ function ShippingDeliveryPolicyPage() {
   return (
     <ContentPageLayout
       title="Shipping & Delivery Policy"
-      intro="This page explains how maha prasadam or any physical devotional items, wherever offered through this website, may be processed for dispatch and delivery."
+      intro="This page explains how maha prasadam or any physical devotional items, wherever offered through this website, may be processed for dispatch and delivery by Hare Krishna Movement India, an affiliate of ISKCON, in relation to ISKCON Gambheeram Visakhapatnam seva initiatives."
       sections={[
         {
           heading: "Scope",

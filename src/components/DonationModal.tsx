@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import { getDonationCampaign } from "@/lib/donations";
+import { createDonationOrder } from "@/lib/payment-api";
 import { openRazorpayCheckout } from "@/lib/razorpay";
 
 interface DonationModalProps {
@@ -17,7 +18,6 @@ interface AddressFields {
   pincode: string;
 }
 
-const RAZORPAY_KEY_ID = import.meta.env.VITE_RAZORPAY_KEY_ID ?? "";
 const PAN_REGEX = /^[A-Z]{5}[0-9]{4}[A-Z]$/;
 
 function createEmptyAddress(): AddressFields {
@@ -205,52 +205,73 @@ export function DonationModal({
       return;
     }
 
-    if (!RAZORPAY_KEY_ID) {
+    try {
+      const receiptAddress = claim80G ? taxAddress : createEmptyAddress();
+      const resolvedPrasadamAddress =
+        wantsPrasadam && claim80G && prasadamAddressMode === "same"
+          ? formatAddress(taxAddress)
+          : wantsPrasadam
+            ? formatAddress(prasadamAddress)
+            : "";
+
+      setErrorMessage("");
+      setIsProcessing(true);
+
+      const order = await createDonationOrder({
+        name: name.trim(),
+        email: email.trim(),
+        mobile: phone.trim(),
+        amount: finalAmount,
+        sevaName: campaign.name,
+        certificate: claim80G,
+        panNumber: claim80G ? pan.trim().toUpperCase() : "",
+        address: formatAddress(receiptAddress),
+        city: receiptAddress.city,
+        state: receiptAddress.state,
+        pincode: receiptAddress.pincode,
+        mahaprasadam: wantsPrasadam,
+        prasadamAddressOption:
+          wantsPrasadam && claim80G ? prasadamAddressMode : "different",
+        prasadamAddress: resolvedPrasadamAddress,
+      });
+
+      await openRazorpayCheckout({
+        amount: finalAmount,
+        name: name.trim(),
+        email: email.trim(),
+        phone: phone.trim(),
+        sevaType: campaign.name,
+        orderId: order.orderId,
+        razorpayKeyId: order.key,
+        notes: {
+          donationId: order.donationId,
+          sevaName: campaign.name,
+        },
+        onSuccess: (paymentId) => {
+          setIsProcessing(false);
+          onClose();
+          navigate({
+            to: "/thank-you",
+            search: {
+              paymentId,
+              amount: String(finalAmount),
+              seva: campaign.name,
+            },
+          });
+        },
+        onFailure: (error) => {
+          setIsProcessing(false);
+          setErrorMessage(error || "Unable to start the payment. Please try again.");
+        },
+      });
+    } catch (error) {
+      setIsProcessing(false);
       setErrorMessage(
-        "Payment setup is incomplete. Add VITE_RAZORPAY_KEY_ID before going live.",
+        error instanceof Error
+          ? error.message
+          : "Unable to start the payment. Please try again.",
       );
-      return;
     }
-
-    setErrorMessage("");
-    setIsProcessing(true);
-
-    await openRazorpayCheckout({
-      amount: finalAmount,
-      name: name.trim(),
-      email: email.trim(),
-      phone: phone.trim(),
-      sevaType: campaign.name,
-      razorpayKeyId: RAZORPAY_KEY_ID,
-      notes: {
-        claim80G: claim80G ? "yes" : "no",
-        pan: claim80G ? pan.trim().toUpperCase() : "",
-        taxAddress: claim80G ? formatAddress(taxAddress) : "",
-        wantsPrasadam: wantsPrasadam ? "yes" : "no",
-        prasadamAddress:
-          wantsPrasadam && claim80G && prasadamAddressMode === "same"
-            ? formatAddress(taxAddress)
-            : wantsPrasadam
-              ? formatAddress(prasadamAddress)
-              : "",
-      },
-      onSuccess: (paymentId) => {
-        setIsProcessing(false);
-        onClose();
-        navigate({
-          to: "/thank-you",
-          search: {
-            paymentId,
-            amount: String(finalAmount),
-            seva: campaign.name,
-          },
-        });
-      },
-      onFailure: (error) => {
-        setIsProcessing(false);
-        setErrorMessage(error || "Unable to start the payment. Please try again.");
-      },
-    });
   };
 
   return (

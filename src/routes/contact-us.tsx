@@ -9,7 +9,7 @@ function ContactUsPage() {
   return (
     <ContentPageLayout
       title="Contact Us"
-      intro="For donation support, seva-related questions, 80G details, maha prasadam coordination, or transaction assistance, please contact the ISKCON Gambheeram support team."
+      intro="For donation support, seva-related questions, 80G details, maha prasadam coordination, or transaction assistance, please contact the support team of Hare Krishna Movement India, an affiliate of ISKCON, serving ISKCON Gambheeram Visakhapatnam."
       sections={[
         {
           heading: "Donation Support",
@@ -17,6 +17,7 @@ function ContactUsPage() {
             "If you need help choosing a seva, confirming a payment, correcting donor details, or requesting support for a failed or duplicate transaction, please contact the temple support desk.",
             "Email: support@iskcongambheeram.org",
             "Phone: +91 90000 00000",
+            "Organization: Hare Krishna Movement India, an affiliate of ISKCON",
           ],
         },
         {

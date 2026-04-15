@@ -9,7 +9,7 @@ function PrivacyPolicyPage() {
   return (
     <ContentPageLayout
       title="Privacy Policy"
-      intro="This Privacy Policy explains how donor and visitor information may be collected, used, stored, and protected when interacting with this website."
+      intro="This Privacy Policy explains how donor and visitor information may be collected, used, stored, and protected when interacting with this website operated for Hare Krishna Movement India, an affiliate of ISKCON, in support of ISKCON Gambheeram Visakhapatnam seva activities."
       sections={[
         {
           heading: "Information We Collect",
@@ -29,7 +29,7 @@ function PrivacyPolicyPage() {
           heading: "Sharing of Information",
           paragraphs: [
             "Information may be shared with payment gateway partners, internal service providers, technology vendors, messaging partners, or statutory authorities only to the extent reasonably required for donation processing, communication, compliance, and support.",
-            "We do not sell donor personal information as part of a commercial data business.",
+            "Hare Krishna Movement India, an affiliate of ISKCON, does not sell donor personal information as part of a commercial data business.",
           ],
         },
         {

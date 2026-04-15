@@ -9,7 +9,7 @@ function TermsAndConditionsPage() {
   return (
     <ContentPageLayout
       title="Terms & Conditions"
-      intro="By using this website and making a donation, you agree to the following terms governing devotional contributions, donor information, and website usage."
+      intro="By using this website and making a donation, you agree to the following terms governing devotional contributions, donor information, and website usage for Hare Krishna Movement India, an affiliate of ISKCON, in relation to ISKCON Gambheeram Visakhapatnam campaigns and seva offerings."
       sections={[
         {
           heading: "Use of Website",
@@ -22,7 +22,7 @@ function TermsAndConditionsPage() {
           heading: "Donations",
           paragraphs: [
             "All donations made through this platform are voluntary and are intended for spiritual, charitable, and temple-related activities.",
-            "The organization retains discretion to allocate donations in line with the stated seva purpose, campaign needs, and temple administration requirements.",
+            "Hare Krishna Movement India, an affiliate of ISKCON, retains discretion to allocate donations in line with the stated seva purpose, campaign needs, and temple administration requirements.",
           ],
         },
         {

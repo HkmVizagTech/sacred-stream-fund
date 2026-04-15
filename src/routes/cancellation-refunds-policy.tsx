@@ -15,7 +15,7 @@ function CancellationRefundsPolicyPage() {
           heading: "General Policy",
           paragraphs: [
             "Donations once processed are generally treated as final and non-refundable.",
-            "If a donation is reported as duplicated, incorrect due to a technical issue, or charged in error, the donor may contact the organization for review.",
+            "If a donation is reported as duplicated, incorrect due to a technical issue, or charged in error, the donor may contact Hare Krishna Movement India, an affiliate of ISKCON, for review.",
           ],
         },
         {

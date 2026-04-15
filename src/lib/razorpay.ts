@@ -36,6 +36,7 @@ export interface DonationOptions {
   email: string;
   phone: string;
   sevaType: string;
+  orderId?: string;
   razorpayKeyId: string;
   notes?: Record<string, string>;
   onSuccess: (paymentId: string) => void;
@@ -53,6 +54,7 @@ export async function openRazorpayCheckout(options: DonationOptions) {
     key: options.razorpayKeyId,
     amount: options.amount * 100, // Razorpay expects paise
     currency: "INR",
+    order_id: options.orderId,
     name: "ISKCON Gambheeram Visakhapatnam",
     description: `Akshaya Tritiya - ${options.sevaType}`,
     image: "",
